@@ -2,6 +2,20 @@
 
 A version of `touch` command that also works on windows. Quickly create a file or files with the `tch` command.
 
+## Installation
+
+Install with pip
+
+```
+pip install tch
+```
+
+Install with UV
+
+```
+uv tool install tch
+```
+
 ## Usage + Examples
 
 ```
