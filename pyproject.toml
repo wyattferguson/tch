@@ -44,7 +44,7 @@ dev = [
 format = "ruff format ./tch/"
 lint = "ruff check --fix ./tch/ && mypy ./tch/"
 typecheck = "mypy ./tch/"
-tests = "pytest --verbose --color=yes tests && coverage report -m"
+tests = "pytest --verbose --color=yes tests"
 run = "uv run ./tch/tch.py"
 
 [tool.ruff]
@@ -52,6 +52,7 @@ line-length = 100
 indent-width = 4
 format.indent-style = "space"
 target-version = "py312"
+unfixable = ["F401"] # Disable fix for unused imports
 src = ["tch", "tests"]
 
 [tool.coverage.run]
