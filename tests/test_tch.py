@@ -25,7 +25,7 @@ def test_duplicate_file(files: str, expectation: str) -> None:
         with open("test.txt", "w") as f:
             f.write("")
 
-        result = runner.invoke(cli, files)
+        result = runner.invoke(cli, f"--verbose {files}")
         assert result.exit_code == 0
         assert expectation in result.output
 
@@ -44,7 +44,7 @@ def test_duplicate_file(files: str, expectation: str) -> None:
 def test_invalid_filename(files: str, expectation: str) -> None:
     runner = CliRunner()
     with runner.isolated_filesystem():
-        result = runner.invoke(cli, files)
+        result = runner.invoke(cli, f"--verbose {files}")
         assert result.exit_code == 0
         assert expectation in result.output
 

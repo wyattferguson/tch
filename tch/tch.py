@@ -14,25 +14,28 @@ import click
     "-v",
     default=False,
     is_flag=True,
-    help="Show notice as files are created.",
+    help="Show file creation notice and error messages.",
 )
 def cli(files: tuple[str, ...] = (), verbose: bool = False) -> None:
     """Create an empty file(s) with the specified name(s)."""
     for filename in files:
         try:
             if not is_valid_filename(filename):
-                click.echo(f"Error: '{filename}' is not a valid filename.")
+                if verbose:
+                    click.echo(f"Error: '{filename}' is not a valid filename.")
                 continue
 
             with open(filename, "x") as fp:
-                # verify file was created & write empty string
                 fp.write("")
+
             if verbose:
                 click.echo(f"Created file: {filename}")
         except FileExistsError:
-            click.echo(f"Error: File '{filename}' already exists.")
+            if verbose:
+                click.echo(f"Error: File '{filename}' already exists.")
         except Exception as e:
-            click.echo(f"Error: {e}")
+            if verbose:
+                click.echo(f"Error: {e}")
 
 
 def is_valid_filename(filename: str) -> bool:

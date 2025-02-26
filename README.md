@@ -15,6 +15,12 @@ tch c:\example.txt
 tch test.py config.yml readme.txt
 ```
 
+## Options
+
+`--verbose` or `-v`
+
+- Show all file creation notices and error messages.
+
 ## Development Setup
 
 Installation is pretty straight forward, Im using [UV](https://docs.astral.sh/uv/) to manage everything.
@@ -37,11 +43,14 @@ task run
 # run pytests
 task tests
 
+# build source and wheel
+task build
+
 ```
 
 ## References
 
-- [Click](https://click.palletsprojects.com/en/stable/): Python library for building CLI's
+- [Click](https://click.palletsprojects.com/en/stable/) - A Python library for building CLI's
 
 ## Contact + Support
 

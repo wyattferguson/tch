@@ -7,16 +7,28 @@ authors = [
     { name = "wyattferguson", email = "wyattf@gmail.com" }
 ]
 requires-python = ">=3.12"
-license = { file = "LICENSE" }
+license = {text = "MIT License"}
 keywords = ["cli", "files", "command-line", "touch", "python"]
 dependencies = [
     "click>=8.1.8",
 ]
 
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License"
+]
+
 [project.urls]
 homepage = "https://github.com/wyattferguson/tch"
-repository = "https://github.com/wyattferguson/tch"
-
+repository = "https://github.com/wyattferguson/tch.git"
+documentation = "https://github.com/wyattferguson/tch"
+issues = "https://github.com/wyattferguson/tch/issues"
 
 [project.scripts]
 tch = "tch.tch:cli"
@@ -33,18 +45,15 @@ dev = [
     "mypy>=1.15.0",
     "pytest>=8.3.4",
     "ruff>=0.9.7",
-    "setuptools>=75.8.1",
     "taskipy>=1.14.1",
-    "twine>=6.1.0",
-    "wheel>=0.45.1",
 ]
-
 
 [tool.taskipy.tasks]
 format = "ruff format ./tch/"
 lint = "ruff check --fix ./tch/ && mypy ./tch/"
 typecheck = "mypy ./tch/"
 tests = "pytest --verbose --color=yes tests"
+build = "uv build"
 run = "uv run ./tch/tch.py"
 
 [tool.ruff]
@@ -54,14 +63,6 @@ format.indent-style = "space"
 target-version = "py312"
 unfixable = ["F401"] # Disable fix for unused imports
 src = ["tch", "tests"]
-
-[tool.coverage.run]
-omit = [ "tests/*"]
-source = [ "tch" ]
-
-[tool.coverage.report]
-exclude_lines = [ 'if TYPE_CHECKING:', "except ImportError:" ]
-fail_under = 90
 
 [tool.mypy]
 packages = [ "tch" ]
