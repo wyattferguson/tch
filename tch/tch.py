@@ -20,12 +20,10 @@ def cli(files: tuple[str, ...] = (), verbose: bool = False) -> None:
     """Create an empty file(s) with the specified name(s)."""
     for filename in files:
         try:
-            # check if filename is valid for Windows
-            if not is_valid_windows_filename(filename):
-                click.echo(f"Error: '{filename}' is not a valid Windows filename.")
+            if not is_valid_filename(filename):
+                click.echo(f"Error: '{filename}' is not a valid filename.")
                 continue
 
-            # create file
             with open(filename, "x") as fp:
                 # verify file was created & write empty string
                 fp.write("")
@@ -37,11 +35,20 @@ def cli(files: tuple[str, ...] = (), verbose: bool = False) -> None:
             click.echo(f"Error: {e}")
 
 
-def is_valid_windows_filename(filename: str) -> bool:
-    # invalid characters in Windows filenames
+def is_valid_filename(filename: str) -> bool:
+    """Check if the filename contains any invalid characters or is a reserved name
+
+    Args:
+        filename (str): The filename to validate
+
+    Returns:
+        bool: True if valid, False otherwise
+    """
     invalid_chars_pattern = r'[<>:"/\\|?*]'
-    # Check if the filename contains any invalid characters or is a reserved name
-    if re.search(invalid_chars_pattern, filename) or filename in (
+
+    reserved_filenames = {
+        ".",
+        "..",
         "CON",
         "PRN",
         "AUX",
@@ -64,8 +71,10 @@ def is_valid_windows_filename(filename: str) -> bool:
         "LPT7",
         "LPT8",
         "LPT9",
-    ):
+    }
+    if re.search(invalid_chars_pattern, filename) or filename in reserved_filenames:
         return False
+
     return True
 
 
