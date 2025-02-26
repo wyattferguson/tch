@@ -1,6 +1,6 @@
 # :robot: tch - Quick Command-line File Creation
 
-A universal version of `touch` that runs on windows, linux, and mac. Quickly create a file or files with the `tch` command.
+A version of `touch` command that also works on windows. Quickly create a file or files with the `tch` command.
 
 ## Usage + Examples
 

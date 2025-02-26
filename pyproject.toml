@@ -63,7 +63,7 @@ exclude_lines = [ 'if TYPE_CHECKING:', "except ImportError:" ]
 fail_under = 90
 
 [tool.mypy]
-packages = [ "tch", "tests" ]
+packages = [ "tch" ]
 python_version = "3.12"
 disable_error_code = 'import-untyped'
 implicit_reexport = false
