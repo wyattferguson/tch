@@ -1,6 +1,6 @@
 [project]
 name = "tch"
-version = "1.0.1"
+version = "1.0.2"
 description = "Quick terminal file creation tool"
 readme = "README.md"
 authors = [
@@ -53,7 +53,6 @@ format = "ruff format ./tch/"
 lint = "ruff check --fix ./tch/ && mypy ./tch/"
 typecheck = "mypy ./tch/"
 tests = "pytest --verbose --color=yes tests"
-build = "uv build"
 run = "uv run ./tch/tch.py"
 
 [tool.ruff]

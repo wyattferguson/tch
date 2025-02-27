@@ -1,4 +1,4 @@
-# :robot: tch - Quick Command-line File Creation
+# :robot: tch - quick terminal file creation
 
 A version of `touch` command that also works on windows. Quickly create a file or files with the `tch` command.
 
@@ -56,10 +56,6 @@ task run
 
 # run pytests
 task tests
-
-# build source and wheel
-task build
-
 ```
 
 ## References

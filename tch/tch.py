@@ -2,6 +2,8 @@ import re
 
 import click
 
+from .config import MAX_FILENAME_LEN, RESERVED_FILENAMES
+
 
 @click.command()
 @click.argument(
@@ -48,34 +50,11 @@ def is_valid_filename(filename: str) -> bool:
         bool: True if valid, False otherwise
     """
     invalid_chars_pattern = r'[<>:"/\\|?*]'
-
-    reserved_filenames = {
-        ".",
-        "..",
-        "CON",
-        "PRN",
-        "AUX",
-        "NUL",
-        "COM1",
-        "COM2",
-        "COM3",
-        "COM4",
-        "COM5",
-        "COM6",
-        "COM7",
-        "COM8",
-        "COM9",
-        "LPT1",
-        "LPT2",
-        "LPT3",
-        "LPT4",
-        "LPT5",
-        "LPT6",
-        "LPT7",
-        "LPT8",
-        "LPT9",
-    }
-    if re.search(invalid_chars_pattern, filename) or filename in reserved_filenames:
+    if (
+        len(filename) > MAX_FILENAME_LEN
+        or re.search(invalid_chars_pattern, filename)
+        or filename in RESERVED_FILENAMES
+    ):
         return False
 
     return True
